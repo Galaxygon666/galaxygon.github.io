@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Automated fog machine | Galaxygon</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Automated fog machine" />
+<meta name="author" content="Galaxygon" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Origin of the idea The idea of turning a simple fog machine into an internet controlled device originated in an irritation. The fog machine could only be activated manually by pressing a button that was connected with a 0.5 meter cable, which of course is a huge inconvinience during halloween. The owner of the fog machine and I brainstorming, and i remembered i had some ESP8266’s laying around gathering dust. I thought that combining them with Tasmota and Home Asssistant could create a way to “push” the button remotely." />
+<meta property="og:description" content="Origin of the idea The idea of turning a simple fog machine into an internet controlled device originated in an irritation. The fog machine could only be activated manually by pressing a button that was connected with a 0.5 meter cable, which of course is a huge inconvinience during halloween. The owner of the fog machine and I brainstorming, and i remembered i had some ESP8266’s laying around gathering dust. I thought that combining them with Tasmota and Home Asssistant could create a way to “push” the button remotely." />
+<link rel="canonical" href="https://galaxygon.dev/electronics/2023/02/14/automated-fog-machine.html" />
+<meta property="og:url" content="https://galaxygon.dev/electronics/2023/02/14/automated-fog-machine.html" />
+<meta property="og:site_name" content="Galaxygon" />
+<meta property="og:image" content="https://galaxygon.dev/fogmachine/fogmachine.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-02-14T00:00:00+01:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://galaxygon.dev/fogmachine/fogmachine.jpg" />
+<meta property="twitter:title" content="Automated fog machine" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Galaxygon"},"dateModified":"2023-02-14T00:00:00+01:00","datePublished":"2023-02-14T00:00:00+01:00","description":"Origin of the idea The idea of turning a simple fog machine into an internet controlled device originated in an irritation. The fog machine could only be activated manually by pressing a button that was connected with a 0.5 meter cable, which of course is a huge inconvinience during halloween. The owner of the fog machine and I brainstorming, and i remembered i had some ESP8266’s laying around gathering dust. I thought that combining them with Tasmota and Home Asssistant could create a way to “push” the button remotely.","headline":"Automated fog machine","image":"https://galaxygon.dev/fogmachine/fogmachine.jpg","mainEntityOfPage":{"@type":"WebPage","@id":"https://galaxygon.dev/electronics/2023/02/14/automated-fog-machine.html"},"url":"https://galaxygon.dev/electronics/2023/02/14/automated-fog-machine.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://galaxygon.dev/feed.xml" title="Galaxygon" />
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Galaxygon</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/about/">About me</a><a class="page-link" href="/categories/">Categories</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">Automated fog machine</h1>
+    <p class="post-meta">Categories:
+	
+        Electronics
+        
+      </a>
+      
+      <br>
+      <time class="dt-published" datetime="2023-02-14T00:00:00+01:00" itemprop="datePublished">
+        Created: Feb 14, 2023
+      </time>
+      <br></p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+	<h3>Contents</h3>
+	<div class="table-container">
+    		<ul id="toc" class="toc__list">
+<li class="toc-entry toc-h2"><a href="#origin-of-the-idea">Origin of the idea</a>
+<ul class="toc__sublist">
+<li class="toc-entry toc-h3"><a href="#technical-details">Technical details</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#mark-i">MARK I</a>
+<ul class="toc__sublist">
+<li class="toc-entry toc-h4"><a href="#setup-schematic">Setup schematic</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#mark-ii">MARK II</a></li>
+<li class="toc-entry toc-h2"><a href="#mark-iii">MARK III</a>
+<ul class="toc__sublist">
+<li class="toc-entry toc-h4"><a href="#change-spray-time-automation">Change spray time automation</a></li>
+<li class="toc-entry toc-h4"><a href="#full-ha-automation-script">Full HA automation script</a></li>
+</ul>
+</li>
+<li class="toc-entry toc-h2"><a href="#conclusion">Conclusion</a></li>
+</ul>
+	</div>
+	<div class="summary-container">
+	    <h3>Summary</h3>
+	    I turned a simple fog machine into an internet controlled device using ESP8266 and Home Assistant. This project went through at lot of iterations of upgrades and feature addition.
+	</div>
+	<hr style="background-color: #bbbbbb; height: 1px !important; border: none !important;">
+	<h2 id="origin-of-the-idea">Origin of the idea</h2>
+<p>The idea of turning a simple fog machine into an internet controlled device originated in an irritation. The fog machine could only be activated
+manually by pressing a button that was connected with a 0.5 meter cable, which of course is a huge inconvinience during halloween.
+The owner of the fog machine and I brainstorming, and i remembered i had some <a href="https://randomnerdtutorials.com/getting-started-with-esp8266-wifi-transceiver-review/" target="_blank">ESP8266</a>’s laying around gathering dust. 
+I thought that combining them with <a href="https://tasmota.github.io/docs/" target="_blank">Tasmota</a> and <a href="https://www.home-assistant.io/" target="_blank">Home Asssistant</a> could create a way to “push” the button remotely.</p>
+
+<h3 id="technical-details">Technical details</h3>
+<p>Throught this project I’ve used a small variety of electronics and softwares.</p>
+
+<p>Electronics:</p>
+<ul>
+  <li><a href="https://randomnerdtutorials.com/getting-started-with-esp8266-wifi-transceiver-review/">NodeMcu Wemos ESP8266 D1 Mini</a>]</li>
+  <li><a href="https://www.aliexpress.com/item/1005002397233422.html?spm=a2g0o.productlist.main.9.5c36693aI6PFPb&amp;algo_pvid=11dff509-00e8-4eba-9d89-611004b35ce3&amp;aem_p4p_detail=202302151539263512815229632000009223875&amp;algo_exp_id=11dff509-00e8-4eba-9d89-611004b35ce3-4&amp;pdp_ext_f=%7B%22sku_id%22%3A%2212000020517138480%22%7D&amp;pdp_npi=3%40dis%21DKK%218.67%216.94%21%21%21%21%21%40210213c816765043667672883d06e0%2112000020517138480%21sea%21DK%213849881319&amp;curPageLogUid=Jp9bUFcVDzUo&amp;ad_pvid=202302151539263512815229632000009223875_1&amp;ad_pvid=202302151539263512815229632000009223875_1">1 Channel Relay Module</a></li>
+  <li><a href="https://www.aliexpress.com/item/32815170131.html?spm=a2g0o.productlist.main.15.4abd278cSCKDRp&amp;algo_pvid=8a0a01e9-2d97-4fa3-95e1-e5031462294d&amp;algo_exp_id=8a0a01e9-2d97-4fa3-95e1-e5031462294d-7&amp;pdp_ext_f=%7B%22sku_id%22%3A%2210000001106771260%22%7D&amp;pdp_npi=3%40dis%21DKK%2112.14%219.92%21%21%21%21%21%40211beca116765044154204156d06e4%2110000001106771260%21sea%21DK%213849881319&amp;curPageLogUid=InoIyplmJjKu">DC-DC Buck converter 24V to 5V 3A USB</a></li>
+  <li><a href="https://www.aliexpress.com/item/33051556213.html?spm=a2g0o.cart.0.0.1d1638daVulh7o&amp;mp=1">AC-DC 230V to 12V Power supply</a></li>
+  <li>Kontaktor ICT 25A 2NO 230VAC</li>
+  <li>400W Fog machine</li>
+  <li>Raspberry Pi 3 B+ (RPI for short)</li>
+</ul>
+
+<p>Software:</p>
+<ul>
+  <li>Tasmota (For the ESP8266)</li>
+  <li>Home Assistant (For the RPI)</li>
+</ul>
+
+<p> </p>
+
+<p><em>Note: Throughout the post i will be refering to Home Assistant as HA</em></p>
+
+<h2 id="mark-i">MARK I</h2>
+<p>Staring the development of the control box I first started looking into the software side. First task was to make the Tasmotazied ESP and HA able to communicate. Luckily HA has MQTT support which means I can use the already running MQTT on the ESP to beam out and recieve data.</p>
+
+<p>After I succesfully setup the communcation with ease (it took me a while) I made it so that a button in HA would toggle the ESP. I was able to do this because in Tasmota there something called <a href="https://tasmota.github.io/docs/Buttons-and-Switches/#switch">SwitchMode</a> where I just used the <em>Default mode</em>. This meant that when I setup my ESP in HA a toggle switch showed up, so now I could controll the state of a GPIO pin wirelessly in HA.</p>
+
+<p>Now i could succesfully change the state of the relay over the internet!</p>
+
+<p>While I was working on this, the other guy in this project was making the physical control box. The setup of of the control box is as follows:</p>
+<h4 id="setup-schematic">Setup schematic</h4>
+<p><img src="/_img/fogmachine/MARK1.png" alt="MARK I" /></p>
+
+<p>After setting this up it was time for testing and…… it worked! We were now able to control the fog machine from the HA app/website. The project was successful, and it worked (almost) flawlessly aside from some wifi connection issues due to lack of range on the ESP, but that was fixed by moving it closer to the AP.</p>
+
+<h2 id="mark-ii">MARK II</h2>
+<p>Although the project was completed there were still something missing. The fog machine we had at hand worked like this:</p>
+<ol>
+  <li>Warm up</li>
+  <li>Turn on green LED to indicate it’s ready</li>
+  <li>Be able to spray for about 30 seconds</li>
+  <li>Return to step 1</li>
+</ol>
+
+<p>This meant that the fog machine had to be in view for us to be able to determine wether it was ready or not. This kind of defeated the purpose of our remote trigger function, because we might as well just press the physical button then.
+That is when I thought of the analog pin on the ESP. We might be able to use that to trigger some sort of indicator in HA so that we could see in HA when it was ready to spray.
+I figured out that if we somehow could get a 5V signal from the same source as the green LED, we could make the analog pin act as a sensor in HA. I told my hardware guy that if he could get a 5V signal when the fog machine was ready, I could make a HA sensor that would display it. 
+<em>schematic</em>
+<em>technical explanation</em></p>
+
+<p>Now we knew if the fog machine was ready or not without looking at the green LED.</p>
+
+<h2 id="mark-iii">MARK III</h2>
+<p>Now we had a way to know if the fog machine was ready to spray or not. Which led to the idea of making an automode feature, which would be an automation in HA that told the ESP to toggle the relay on if the 5V ready signal was on. This made it so that if automode was enabled, the fog machine would:</p>
+<ol>
+  <li>Warm up</li>
+  <li>Signal ready</li>
+  <li>Spray for 30 seconds consecutively</li>
+  <li>Back to step 1</li>
+</ol>
+
+<p>Although this was technically what we set out to do, we weren’t quite happy with the spraying for 30 seconds then stopping for about 1-2 minutes then spraying again. We discussed if there were any possibilities for us to make it so that you could adjust the spray time. I saw in the Tasmota <a href="https://tasmota.github.io/docs/Commands/#control">commands</a> docs that there was a command called <code class="language-plaintext highlighter-rouge">PulseTime&lt;x&gt;</code> which could controll how long the relay stayed on after being triggered.</p>
+
+<p>So I set out to make an automation in HA which could make it possible to take an input in HA and publish it in MQTT, which the ESP then picked up and set as it’s PulseTime. I came up with this automation:</p>
+<h4 id="change-spray-time-automation">Change spray time automation</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s1">'</span><span class="s">device-id'</span>
+  <span class="na">alias</span><span class="pi">:</span> <span class="s">Pulse change</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>
+  <span class="na">trigger</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">platform</span><span class="pi">:</span> <span class="s">state</span>
+    <span class="na">entity_id</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">input_text.change_pulse</span>
+  <span class="na">condition</span><span class="pi">:</span> <span class="pi">[]</span>
+  <span class="na">action</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">mqtt.publish</span>
+    <span class="na">data</span><span class="pi">:</span>
+      <span class="na">topic</span><span class="pi">:</span> <span class="s">cmnd/relay/PulseTime</span>
+      <span class="na">payload</span><span class="pi">:</span> <span class="s1">'</span><span class="s">{{</span><span class="nv"> </span><span class="s">states('</span><span class="s1">'</span><span class="s">input_text.change_pulse'</span><span class="s1">'</span><span class="s">)</span><span class="nv"> </span><span class="s">}}'</span>
+  <span class="na">mode</span><span class="pi">:</span> <span class="s">single</span>
+</code></pre></div></div>
+
+<p>This automation worked like this: If there is a change in the <code class="language-plaintext highlighter-rouge">input_text</code> field in HA Then publish the value of <code class="language-plaintext highlighter-rouge">input_text</code> on <code class="language-plaintext highlighter-rouge">cmd/relay/PulseTime</code>. A smart feature of Tasmota’s MQTT is that if you publish <code class="language-plaintext highlighter-rouge">cmd/gpio/command</code> the ESP will execute that as a command, and of course the payload of the “message” is the value of the <code class="language-plaintext highlighter-rouge">input_text</code> field.</p>
+
+<p>With this automation it would be possible to control how long the fog machine would spray for each time we toggled it on. This meant that when the device was in automode it would not spray for 30 seconds straight but rather spray for the set amount of time. I then figured out how to change the duration between sensor updates from Tasmota, which meant that if we set it at a fixed value of let’s say 10 seconds then the relay would have a 10 seconds cooldown before it recived a new “turn on” message from HA.</p>
+
+<p>The full automation script of all of this ended up looking like this:</p>
+<h4 id="full-ha-automation-script">Full HA automation script</h4>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="pi">-</span> <span class="na">id</span><span class="pi">:</span> <span class="s1">'</span><span class="s">device-id'</span>
+  <span class="na">alias</span><span class="pi">:</span> <span class="s">Listener</span>
+  <span class="na">description</span><span class="pi">:</span> <span class="s1">'</span><span class="s">'</span>
+  <span class="na">trigger</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">platform</span><span class="pi">:</span> <span class="s">state</span>
+    <span class="na">entity_id</span><span class="pi">:</span> <span class="s">sensor.tasmota_analog_a0</span>
+  <span class="na">action</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="na">if</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">and</span>
+      <span class="na">conditions</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">numeric_state</span>
+        <span class="na">entity_id</span><span class="pi">:</span> <span class="s">sensor.tasmota_analog_a0</span>
+        <span class="na">above</span><span class="pi">:</span> <span class="m">500</span>
+      <span class="pi">-</span> <span class="na">condition</span><span class="pi">:</span> <span class="s">state</span>
+        <span class="na">entity_id</span><span class="pi">:</span> <span class="s">input_boolean.automode</span>
+        <span class="na">state</span><span class="pi">:</span> <span class="s1">'</span><span class="s">on'</span>
+    <span class="na">then</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">switch.toggle</span>
+      <span class="na">data</span><span class="pi">:</span> <span class="pi">{}</span>
+      <span class="na">target</span><span class="pi">:</span>
+        <span class="na">device_id</span><span class="pi">:</span> <span class="s">fba9a19ffc4ac5db194358c10928c053</span>
+    <span class="na">else</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">service</span><span class="pi">:</span> <span class="s">switch.turn_off</span>
+      <span class="na">data</span><span class="pi">:</span> <span class="pi">{}</span>
+      <span class="na">target</span><span class="pi">:</span>
+        <span class="na">entity_id</span><span class="pi">:</span> <span class="s">switch.tasmota</span>
+  <span class="na">mode</span><span class="pi">:</span> <span class="s">single</span>
+</code></pre></div></div>
+
+<p>This works as follows: If the state of the analog sensor (the 5V signal) changed, then check the value of the sensor (0 is no signal and 1024 is 5V signal) if that value is above 500 and the automode switch is on, then toggle the relay. And if either one of the statements is false then toggle the relay off. 
+This means that if automode is enabled and HA recives an indication that the fog machine is ready, then it will turn the relay on. The relay will then stay on for the set duration and it will automatically turn off again until the wait period is over. But if automode is enabled and the 5V signal is not present (the fog machine is not ready) then nothing will happen. And same case if automode is not enabled.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>This was a fun little project, it was in fact my first “complete” project which involved both software but also a surprising amount of hardware. I do apologise for my writing style, but seen as this is my first ever writeup I hope you’ll give me some slack ;)</p>
+
+<p><em>If this project recives further development then I’ll make a part 2.</em></p>
+
+
+  </div><a class="u-url" href="/electronics/2023/02/14/automated-fog-machine.html" hidden></a>
+</article>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <ul class="contact-list">
+          Author: <li class="p-name">&emsp;Galaxygon</li>
+          <br>
+	      <p style="margin-bottom: 0 !important">Contact info:</p>
+	      <li><a class="u-email" href="mailto:Galaxygon666@gmail.com">&emsp;Galaxygon666@gmail.com</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p></p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/galaxygon666" target="_blank" title="Galaxygon666">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://twitter.com/galaxygon666" target="_blank" title="Galaxygon666">
+    <svg class="svg-icon grey">
+      <use xlink:href="/assets/minima-social-icons.svg#twitter"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>
